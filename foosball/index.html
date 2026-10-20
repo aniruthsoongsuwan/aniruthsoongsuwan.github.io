@@ -1,16 +1,106 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โต๊ะบอล Foosball</title>
 
-⚽
-โต๊ะบอล
-FOOSBALL • เล่นคนเดียว
-เวลา/ครึ่ง 45 วิ1 นาที1:30 นาที พักเกม ↻ เริ่มเกมใหม่
-ทีมสีน้ำเงิน
-0:0
-ครึ่งแรก · 01:00
-ทีมสีแดง
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./game.js" defer></script>
+</head>
 
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">⚽</div>
+        <div>
+          <h1>โต๊ะบอล</h1>
+          <p>FOOSBALL • เล่นคนเดียว</p>
+        </div>
+      </div>
 
+      <div class="header-actions">
+        <label class="duration-control" for="halfDuration">
+          เวลา/ครึ่ง
+          <select id="halfDuration">
+            <option value="45">45 วิ</option>
+            <option value="60" selected>1 นาที</option>
+            <option value="90">1:30 นาที</option>
+          </select>
+        </label>
 
-☝ ลากฝั่งสีน้ำเงินขึ้น–ลง • เตะเมื่อบอลอยู่ใกล้
-เตะเบา เตะแรง
-♫เสียง45%
-เล่นบน Mac ด้วยเมาส์ หรือบน iPhone ด้วยหน้าจอสัมผัส
+        <button id="matchToggle" class="reset-button" type="button">
+          พักเกม
+        </button>
+
+        <button id="resetButton" class="reset-button" type="button">
+          ↻ เริ่มเกมใหม่
+        </button>
+      </div>
+    </header>
+
+    <section class="scoreboard">
+      <div class="team-name">
+        <span class="team-dot"></span>
+        <span>ทีมสีน้ำเงิน</span>
+      </div>
+
+      <div class="score-center">
+        <div class="score">
+          <strong id="blueScore">0</strong>
+          <i>:</i>
+          <strong id="redScore">0</strong>
+        </div>
+        <div id="matchClock" class="match-clock">ครึ่งแรก · 01:00</div>
+      </div>
+
+      <div class="team-name red-name">
+        <span class="team-dot"></span>
+        <span>ทีมสีแดง</span>
+      </div>
+    </section>
+
+    <section class="table-wrap">
+      <div id="goalFlash" class="goal-flash"></div>
+      <div id="eventBanner" class="event-banner"></div>
+      <div id="matchOverlay" class="match-overlay"></div>
+
+      <canvas
+        id="gameCanvas"
+        width="1000"
+        height="600"
+        aria-label="เกมโต๊ะบอล"
+      ></canvas>
+    </section>
+
+    <section class="controls-row">
+      <p class="hint">
+        <span>☝</span>
+        ลากฝั่งสีน้ำเงินขึ้น–ลง • เตะเมื่อบอลอยู่ใกล้
+      </p>
+
+      <div class="kick-controls">
+        <button id="softKickButton" class="kick-button kick-light" type="button">
+          เตะเบา
+        </button>
+
+        <button id="kickButton" class="kick-button" type="button">
+          เตะแรง
+        </button>
+      </div>
+
+      <label class="volume-control" for="volumeSlider">
+        <span>♫</span>
+        เสียง
+        <input id="volumeSlider" type="range" min="0" max="100" value="45">
+        <output id="volumeValue">45%</output>
+      </label>
+    </section>
+
+    <footer>
+      เล่นบน Mac ด้วยเมาส์ หรือบน iPhone ด้วยหน้าจอสัมผัส
+    </footer>
+  </main>
+</body>
+</html>
